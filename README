@@ -1,4 +1,6 @@
 Intent:  Test javascriptmvc project
+DateCreated: 2011.07.25
+DateLast: 2011.07.25 <or look this stuff up on github repo history>
 
 Resources:
 WEB: http://js.testjsmvc/
@@ -30,8 +32,9 @@ hosts
 >>>>>STEP 1 - TEST
 Browse to - http://js.testjsmvc/README
 See this README
-
+<<<<<<<<<<<<<<<<<
 >>>>>STEP 2 
+<<<<<<<<<<<<<<<<<
 Setup git repo and suck in jsmvc
 Create new repo on git called testjsmvc
 https://github.com/christrees/testjsmvc
@@ -128,3 +131,152 @@ Total 5 (delta 0), reused 0 (delta 0)
 To git@github.com:christrees/testjsmvc.git
  * [new branch]      master -> master
  
+ C:\Users\ChrisT\workspace\testjsmvc>git status
+# On branch master
+nothing to commit (working directory clean)
+
+C:\Users\ChrisT\workspace\testjsmvc>ls
+README  documentjs  funcunit  git  jquery  steal
+
+>>>>> UPDATE this README FILE
+ 
+ C:\Users\ChrisT\workspace\testjsmvc>git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+C:\Users\ChrisT\workspace\testjsmvc>git add .
+
+C:\Users\ChrisT\workspace\testjsmvc>git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   README
+#
+
+C:\Users\ChrisT\workspace\testjsmvc>git commit -m "Update README before creating first app"
+[master e1431a0] Update README before creating first app
+ 1 files changed, 130 insertions(+), 19 deletions(-)
+ rewrite README (64%)
+
+C:\Users\ChrisT\workspace\testjsmvc>git push
+
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 2 - TEST
+<<<<<<<<<<<<<<<<<
+Verify files
+C:\Users\ChrisT\workspace\testjsmvc>ls
+README  documentjs  funcunit  git  jquery  steal
+Verify local website README
+http://js.testjsmvc/README
+Verify github README
+https://github.com/christrees/testjsmvc
+
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 3 - B: 1 - 3 App Gen
+<<<<<<<<<<<<<<<<<
+C:\Users\ChrisT\workspace\testjsmvc>js steal\generate\app cookbook
+'js' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\ChrisT\workspace\testjsmvc>ls
+README  documentjs  funcunit  git  jquery  steal
+
+>>>>>BUG:1 BEGIN
+./js steal/generate/app cookbook for LINUX
+js steal\generate\app cookbook for Windows
+.....BUT
+OH... the scripts are missing... well I'll pull them in from C:\Users\ChrisT\workspace\javascriptmvc-3.1.0.zip
+AND put my standard .gitignore in so netbeans can put it's mess in
+<<<<<BUG:1 END
+
+C:\Users\ChrisT\workspace\testjsmvc>ls -alu
+total 50
+drwxr-xr-x  7 ChrisT Administrators 4096 Jul 25 09:59 .
+drwxr-xr-x 27 ChrisT Administrators 8192 Jul 23 22:56 ..
+drwxr-xr-x  7 ChrisT Administrators 4096 Jul 25 09:38 .git
+-rw-r--r--  1 ChrisT Administrators  499 Jul 25 09:55 .gitignore
+-rw-r--r--  1 ChrisT Administrators  337 Jul 25 09:19 .gitmodules
+-rw-r--r--  1 ChrisT Administrators 7053 Jul 25 09:37 README
+drwxr-xr-x  9 ChrisT Administrators 4096 Jul 25 09:19 documentjs
+drwxr-xr-x 12 ChrisT Administrators 8192 Jul 25 09:18 funcunit
+-rw-r--r--  1 ChrisT Administrators    0 Jul 25 09:19 git
+drwxr-xr-x 14 ChrisT Administrators 4096 Jul 25 09:15 jquery
+-rwxr-xr-x  1 ChrisT Administrators 1996 Apr 27 03:09 js
+-rwxr-xr-x  1 ChrisT Administrators 2352 Apr 27 03:09 js.bat
+drwxr-xr-x 14 ChrisT Administrators 4096 Jul 25 09:14 steal
+
+C:\Users\ChrisT\workspace\testjsmvc>js steal\generate\app cookbook
+      cookbook/cookbook.css
+      cookbook/cookbook.html
+      cookbook/cookbook.js
+      cookbook/docs
+      cookbook/resources
+      cookbook/resources/example.coffee
+      cookbook/resources/example.js
+      cookbook/resources/example.less
+      cookbook/scripts
+      cookbook/scripts/build.html
+      cookbook/scripts/build.js
+      cookbook/scripts/clean.js
+      cookbook/test
+
+C:\Users\ChrisT\workspace\testjsmvc>ls
+README  cookbook  documentjs  funcunit  git  jquery  js  js.bat  steal
+
+>>>>>BUG:2 BEGIN
+./js steal/generate/scaffold Cookbook.Models.Recipe
+js steal\generate\scaffold Cookbook.Models.Recipe
+...OH... seems that steal does NOT HAVE a scaffold, but jquery does try that
+C:\Users\ChrisT\workspace\testjsmvc>js jquery\generate\scaffold Cookbook.Models.Recipe
+! Error: folder cookbook/models does not exist!
+
+...OH... lets nuke all this with git reset --hard and just use the jquery and not steal
+<<<<<BUG:2 END
+
+
+>>>>>BUG:3 BEGIN
+<<<<<BUG:3 END
+>>>>>BUG:4 BEGIN
+<<<<<BUG:4 END
+>>>>>BUG:5 BEGIN
+<<<<<BUG:5 END
+
+
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 3 - TEST B: 4
+<<<<<<<<<<<<<<<<<
+
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 4 - B: 5 Functional Test
+<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 4 - TEST B: 6 - 7
+<<<<<<<<<<<<<<<<<
+
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 5 - B: 8 Unit Test
+<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 5 - TEST B: 9 - 10
+<<<<<<<<<<<<<<<<<
+
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 6 - B: 11 Compress for Production 
+<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 6 - TEST B: 12
+<<<<<<<<<<<<<<<<<
+
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 7 - B: 13 Create Documents 
+<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 7 - TEST B: 14
+<<<<<<<<<<<<<<<<<
