@@ -1,19 +1,130 @@
-Test javascriptmvc project
+Intent:  Test javascriptmvc project
 
-USE instructions:
-Contribute: https://github.com/jupiterjs/javascriptmvc/blob/master/README
-My FORKS
-http://github.com/christrees/steal
-http://github.com/christrees/jquerymx
-http://github.com/christrees/funcunit
-http://github.com/christrees/documentjs
-
-Creating on Windows7 FS
-C:\Users\ChrisT\workspace\testjsmvc>ls
-
-Setup jsmvc dir and pointed local server http://js.jsmvc/
-
-WEB: http://js.jsmvc/
+Resources:
+WEB: http://js.testjsmvc/
 FILE: C:\Users\ChrisT\workspace\testjsmvc
 DOC: http://javascriptmvc.com/docs.html#&search=core
 Contribute: https://github.com/jupiterjs/javascriptmvc/blob/master/README
+
+>>>>>STEP 1
+Setup local environment for files and web
+Create a dir testjsmvc
+Create this README on local Windows7 FS
+C:\Users\ChrisT\workspace\testjsmvc>ls
+README
+
+Setup testjsmvc dir and pointed local server http://js.testjsmvc/
+<VirtualHost *:80>
+   DocumentRoot "C:\Users\ChrisT\workspace\testjsmvc"
+   ServerName js.testjsmvc
+   <Directory "C:\Users\ChrisT\workspace\testjsmvc">
+       Options Indexes MultiViews FollowSymLinks
+       AllowOverride All
+       Order allow,deny
+       Allow from all
+   </Directory>
+</VirtualHost>
+hosts
+127.0.0.1 js.testjsmvc # javascriptmvc testing
+
+>>>>>STEP 1 - TEST
+Browse to - http://js.testjsmvc/README
+See this README
+
+>>>>>STEP 2 
+Setup git repo and suck in jsmvc
+Create new repo on git called testjsmvc
+https://github.com/christrees/testjsmvc
+
+C:\Users\ChrisT\workspace\testjsmvc>git init
+
+C:\Users\ChrisT\workspace\testjsmvc>git submodule add git@github.com:christrees/steal.git steal
+Cloning into steal...
+Enter passphrase for key '/c/Users/ChrisT/.ssh/id_rsa':
+remote: Counting objects: 3908, done.
+remote: Compressing objects: 100% (1436/1436), done.
+remote: Total 3908 (delta 2338), reused 3823 (delta 2263)
+Receiving objects: 100% (3908/3908), 19.42 MiB | 602 KiB/s, done.
+Resolving deltas: 100% (2338/2338), done.
+warning: LF will be replaced by CRLF in .gitmodules.
+The file will have its original line endings in your working directory.
+
+C:\Users\ChrisT\workspace\testjsmvc>git submodule add git@github.com:christrees/jquerymx.git jquery
+Cloning into jquery...
+Enter passphrase for key '/c/Users/ChrisT/.ssh/id_rsa':
+remote: Counting objects: 6865, done.
+remote: Compressing objects: 100% (2316/2316), done.
+remote: Total 6865 (delta 4275), reused 6715 (delta 4162)
+Receiving objects: 100% (6865/6865), 1.40 MiB | 510 KiB/s, done.
+Resolving deltas: 100% (4275/4275), done.
+warning: LF will be replaced by CRLF in .gitmodules.
+The file will have its original line endings in your working directory.
+
+C:\Users\ChrisT\workspace\testjsmvc>git submodule add git@github.com:christrees/funcunit.git funcunit
+Cloning into funcunit...
+Enter passphrase for key '/c/Users/ChrisT/.ssh/id_rsa':
+remote: Counting objects: 2829, done.
+remote: Compressing objects: 100% (1192/1192), done.
+remote: Total 2829 (delta 1724), reused 2630 (delta 1527)
+Receiving objects: 100% (2829/2829), 61.69 MiB | 401 KiB/s, done.
+Resolving deltas: 100% (1724/1724), done.
+warning: LF will be replaced by CRLF in .gitmodules.
+The file will have its original line endings in your working directory.
+
+C:\Users\ChrisT\workspace\testjsmvc>git submodule add git@github.com:christrees/documentjs.git documentjs
+Cloning into documentjs...
+Enter passphrase for key '/c/Users/ChrisT/.ssh/id_rsa':
+remote: Counting objects: 1481, done.
+remote: Compressing objects: 100% (577/577), done.
+remote: Total 1481 (delta 957), reused 1383 (delta 883)
+Receiving objects: 100% (1481/1481), 1.86 MiB | 200 KiB/s, done.
+Resolving deltas: 100% (957/957), done.
+warning: LF will be replaced by CRLF in .gitmodules.
+The file will have its original line endings in your working directory.
+
+C:\Users\ChrisT\workspace\testjsmvc>ls
+README  documentjs  funcunit  git  jquery  steal
+
+C:\Users\ChrisT\workspace\testjsmvc>git status
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#
+#       new file:   .gitmodules
+#       new file:   README
+#       new file:   documentjs
+#       new file:   funcunit
+#       new file:   git
+#       new file:   jquery
+#       new file:   steal
+#
+
+C:\Users\ChrisT\workspace\testjsmvc>git add .
+C:\Users\ChrisT\workspace\testjsmvc>git commit -m "first commit"
+[master (root-commit) a04d9dc] first commit
+warning: LF will be replaced by CRLF in .gitmodules.
+The file will have its original line endings in your working directory.
+ 6 files changed, 35 insertions(+), 0 deletions(-)
+ create mode 100644 .gitmodules
+ create mode 100644 README
+ create mode 160000 documentjs
+ create mode 160000 funcunit
+ create mode 100644 git
+ create mode 160000 jquery
+ create mode 160000 steal
+ 
+C:\Users\ChrisT\workspace\testjsmvc>git remote add origin git@github.com:christrees/testjsmvc.git
+
+C:\Users\ChrisT\workspace\testjsmvc>git push origin master
+Enter passphrase for key '/c/Users/ChrisT/.ssh/id_rsa':
+Counting objects: 5, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 822 bytes, done.
+Total 5 (delta 0), reused 0 (delta 0)
+To git@github.com:christrees/testjsmvc.git
+ * [new branch]      master -> master
+ 
