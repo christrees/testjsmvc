@@ -1,0 +1,19 @@
+Test javascriptmvc project
+
+USE instructions:
+Contribute: https://github.com/jupiterjs/javascriptmvc/blob/master/README
+My FORKS
+http://github.com/christrees/steal
+http://github.com/christrees/jquerymx
+http://github.com/christrees/funcunit
+http://github.com/christrees/documentjs
+
+Creating on Windows7 FS
+C:\Users\ChrisT\workspace\testjsmvc>ls
+
+Setup jsmvc dir and pointed local server http://js.jsmvc/
+
+WEB: http://js.jsmvc/
+FILE: C:\Users\ChrisT\workspace\testjsmvc
+DOC: http://javascriptmvc.com/docs.html#&search=core
+Contribute: https://github.com/jupiterjs/javascriptmvc/blob/master/README
