@@ -1,4 +1,5 @@
 Intent:  Test javascriptmvc project
+Goal: working Receipt tutorial based on git fork
 DateCreated: 2011.07.25
 DateLast: 2011.07.25 <or look this stuff up on github repo history>
 
@@ -33,7 +34,7 @@ hosts
 Browse to - http://js.testjsmvc/README
 See this README
 <<<<<<<<<<<<<<<<<
->>>>>STEP 2 
+>>>>>STEP 2 - A: 1 - 6 Source Setup
 <<<<<<<<<<<<<<<<<
 Setup git repo and suck in jsmvc
 Create new repo on git called testjsmvc
@@ -237,25 +238,217 @@ js steal\generate\scaffold Cookbook.Models.Recipe
 C:\Users\ChrisT\workspace\testjsmvc>js jquery\generate\scaffold Cookbook.Models.Recipe
 ! Error: folder cookbook/models does not exist!
 
-...OH... lets nuke all this with git reset --hard and just use the jquery and not steal
+...OH... lets nuke cookbook just use the jquery and not steal
 <<<<<BUG:2 END
 
+C:\Users\ChrisT\workspace\testjsmvc>js jquery\generate\app cookbook
+      cookbook/cookbook.css
+      cookbook/cookbook.html
+      cookbook/cookbook.js
+      cookbook/controllers
+      cookbook/docs
+      cookbook/fixtures
+      cookbook/funcunit.html
+      cookbook/models
+      cookbook/qunit.html
+      cookbook/resources
+      cookbook/scripts
+      cookbook/scripts/build.html
+      cookbook/scripts/build.js
+      cookbook/scripts/clean.js
+      cookbook/scripts/docs.js
+      cookbook/test
+      cookbook/test/funcunit
+      cookbook/test/funcunit/cookbook_test.js
+      cookbook/test/funcunit/funcunit.js
+      cookbook/test/qunit
+      cookbook/test/qunit/cookbook_test.js
+      cookbook/test/qunit/qunit.js
+      cookbook/views
+
+C:\Users\ChrisT\workspace\testjsmvc>js jquery\generate\scaffold Cookbook.Models.Recipe
+      cookbook/controllers
+      cookbook/controllers/recipe_controller.js
+      cookbook/fixtures
+      cookbook/fixtures/recipes.json.get
+      cookbook/models
+      cookbook/models/recipe.js
+      cookbook/test
+      cookbook/test/funcunit
+      cookbook/test/funcunit/recipe_controller_test.js
+      cookbook/test/qunit
+      cookbook/test/qunit/recipe_test.js
+      cookbook/views
+      cookbook/views/recipe
+      cookbook/views/recipe/edit.ejs
+      cookbook/views/recipe/init.ejs
+      cookbook/views/recipe/list.ejs
+      cookbook/views/recipe/show.ejs
+
+FIRE UP NETBEANS and EDIT cookbook/cookbook.js add the last two lines
+steal(	
+	'jquery/controller',        // a widget factory
+	'jquery/controller/subscribe',	// subscribe to OpenAjax.hub
+	'jquery/view/ejs',          // client side templates
+	'jquery/controller/view',   // lookup views with the controller's name
+	'jquery/model',             // Ajax wrappers
+	'jquery/dom/fixture',       // simulated Ajax requests
+	'jquery/dom/form_params')   // form data helper
+	
+	.then('./cookbook.css')     // loads styles
+        .models('recipe')           // Added after recipe generate <<<<<<<<<<<<<<WRONG BUG3
+        .controllers('recipe')      // Added after recipe generate <<<<<<<<<<<<<<WRONG BUG3
 
 >>>>>BUG:3 BEGIN
+...The mod in the documentation does not work... so I tried this..
+steal(	
+	'jquery/controller',        // a widget factory
+	'jquery/controller/subscribe',	// subscribe to OpenAjax.hub
+	'jquery/view/ejs',          // client side templates
+	'jquery/controller/view',   // lookup views with the controller's name
+	'jquery/model',             // Ajax wrappers
+	'jquery/dom/fixture',       // simulated Ajax requests
+	'jquery/dom/form_params')   // form data helper
+	
+	.then('./cookbook.css',     // loads styles
+              './models/recipe',    // added after gen recipe
+              './controllers/recipe_controller')  // added after gen recipe
+... and THAT didn't work
+DIGG ON FORUMS... randomly and ran onto
+http://forum.javascriptmvc.com/#topic/32525000000590273
+Basically changes to steal effect stuff...
+ Brian_Moschel  POST
+1) js jquery\generate\app cookbook
+2) js jquery\generate\scaffold Cookbook.Models.Recipe
+3) add .then('./controllers/recipe_controller.js', './models/recipe.js') to cookbook.js
+WORKS...
 <<<<<BUG:3 END
->>>>>BUG:4 BEGIN
-<<<<<BUG:4 END
->>>>>BUG:5 BEGIN
-<<<<<BUG:5 END
 
+EDIT cookbook/cookbook.js add the last line
+steal(	
+	'jquery/controller',        // a widget factory
+	'jquery/controller/subscribe',	// subscribe to OpenAjax.hub
+	'jquery/view/ejs',          // client side templates
+	'jquery/controller/view',   // lookup views with the controller's name
+	'jquery/model',             // Ajax wrappers
+	'jquery/dom/fixture',       // simulated Ajax requests
+	'jquery/dom/form_params')   // form data helper
+	.then('./cookbook.css')     // loads styles
+        .then('./controllers/recipe_controller.js', './models/recipe.js')
+
+>>>>GIT save
+C:\Users\ChrisT\workspace\testjsmvc>git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       .gitignore
+#       cookbook/
+#       js
+#       js.bat
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\Users\ChrisT\workspace\testjsmvc>git add .
+C:\Users\ChrisT\workspace\testjsmvc>git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       new file:   .gitignore
+#       new file:   cookbook/controllers/recipe_controller.js
+#       new file:   cookbook/cookbook.css
+#       new file:   cookbook/cookbook.html
+#       new file:   cookbook/cookbook.js
+#       new file:   cookbook/fixtures/recipes.json.get
+#       new file:   cookbook/funcunit.html
+#       new file:   cookbook/models/recipe.js
+#       new file:   cookbook/qunit.html
+#       new file:   cookbook/scripts/build.html
+#       new file:   cookbook/scripts/build.js
+#       new file:   cookbook/scripts/clean.js
+#       new file:   cookbook/scripts/docs.js
+#       new file:   cookbook/test/funcunit/cookbook_test.js
+#       new file:   cookbook/test/funcunit/funcunit.js
+#       new file:   cookbook/test/funcunit/recipe_controller_test.js
+#       new file:   cookbook/test/qunit/cookbook_test.js
+#       new file:   cookbook/test/qunit/qunit.js
+#       new file:   cookbook/test/qunit/recipe_test.js
+#       new file:   cookbook/views/recipe/edit.ejs
+#       new file:   cookbook/views/recipe/init.ejs
+#       new file:   cookbook/views/recipe/list.ejs
+#       new file:   cookbook/views/recipe/show.ejs
+#       new file:   js
+#       new file:   js.bat
+#
+
+C:\Users\ChrisT\workspace\testjsmvc>git commit -m "Update END Step 1"
+[master 69909ad] Update END Step 1
+ 25 files changed, 645 insertions(+), 0 deletions(-)
+ create mode 100644 .gitignore
+ create mode 100644 cookbook/controllers/recipe_controller.js
+ create mode 100644 cookbook/cookbook.css
+ create mode 100644 cookbook/cookbook.html
+ create mode 100644 cookbook/cookbook.js
+ create mode 100644 cookbook/fixtures/recipes.json.get
+ create mode 100644 cookbook/funcunit.html
+ create mode 100644 cookbook/models/recipe.js
+ create mode 100644 cookbook/qunit.html
+ create mode 100644 cookbook/scripts/build.html
+ create mode 100644 cookbook/scripts/build.js
+ create mode 100644 cookbook/scripts/clean.js
+ create mode 100644 cookbook/scripts/docs.js
+ create mode 100644 cookbook/test/funcunit/cookbook_test.js
+ create mode 100644 cookbook/test/funcunit/funcunit.js
+ create mode 100644 cookbook/test/funcunit/recipe_controller_test.js
+ create mode 100644 cookbook/test/qunit/cookbook_test.js
+ create mode 100644 cookbook/test/qunit/qunit.js
+ create mode 100644 cookbook/test/qunit/recipe_test.js
+ create mode 100644 cookbook/views/recipe/edit.ejs
+ create mode 100644 cookbook/views/recipe/init.ejs
+ create mode 100644 cookbook/views/recipe/list.ejs
+ create mode 100644 cookbook/views/recipe/show.ejs
+ create mode 100644 js
+ create mode 100644 js.bat
+
+C:\Users\ChrisT\workspace\testjsmvc>git push
+Enter passphrase for key '/c/Users/ChrisT/.ssh/id_rsa':
+Counting objects: 42, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (34/34), done.
+Writing objects: 100% (40/40), 11.14 KiB, done.
+Total 40 (delta 3), reused 0 (delta 0)
+To git@github.com:christrees/testjsmvc.git
+   e1431a0..69909ad  master -> master
 
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 3 - TEST B: 4
 <<<<<<<<<<<<<<<<<
+Browse to http://js.testjsmvc/cookbook/cookbook.html
+Should see the standard Reciept app
+
+'Well my comment on the git commit was wrong... it was End STEP 3
+'Heck lets add a git tag...
+http://jasonswett.net/blog/a-git-tag-example-that-doesnt-suck/
+http://progit.org/book/ch2-10.html
+
+C:\Users\ChrisT\workspace\testjsmvc>git tag -a step3 -m "step 3 working"
+C:\Users\ChrisT\workspace\testjsmvc>git tag
+step3
+
+C:\Users\ChrisT\workspace\testjsmvc>git push origin --tags
+Enter passphrase for key '/c/Users/ChrisT/.ssh/id_rsa':
+Counting objects: 1, done.
+Writing objects: 100% (1/1), 159 bytes, done.
+Total 1 (delta 0), reused 0 (delta 0)
+To git@github.com:christrees/testjsmvc.git
+ * [new tag]         step3 -> step3
+
+C:\Users\ChrisT\workspace\testjsmvc>
 
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 4 - B: 5 Functional Test
 <<<<<<<<<<<<<<<<<
+
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 4 - TEST B: 6 - 7
 <<<<<<<<<<<<<<<<<
@@ -280,3 +473,19 @@ C:\Users\ChrisT\workspace\testjsmvc>js jquery\generate\scaffold Cookbook.Models.
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 7 - TEST B: 14
 <<<<<<<<<<<<<<<<<
+
+	
+	
+>>>>>BUG:4 BEGIN
+<<<<<BUG:4 END
+>>>>>BUG:5 BEGIN
+<<<<<BUG:5 END
+>>>>>BUG:6 BEGIN
+<<<<<BUG:6 END
+>>>>>BUG:7 BEGIN
+<<<<<BUG:7 END
+>>>>>BUG:8 BEGIN
+<<<<<BUG:8 END
+>>>>>BUG:9 BEGIN
+<<<<<BUG:9 END
+
